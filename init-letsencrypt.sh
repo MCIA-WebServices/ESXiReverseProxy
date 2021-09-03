@@ -114,10 +114,10 @@ function reload_nginx {
 ###################################################################
 
 
-domains_list=("example.com www.example.com" "api.example.com www.api.example.com")
+domains_list=("granta.api.ecobulk.upc.edu eushp-service.ecobulk.upc.edu sso.backend.new.ecobulk.upc.edu sso.new.ecobulk.upc.edu")
 rsa_key_size=4096
-data_path="/home/example/certbot"
-email="example@example.com" # Adding a valid address is strongly recommended
+data_path="./data/certbot"
+email="angel.fernandez.sobrino@upc.edu" # Adding a valid address is strongly recommended
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
 check_if_docker_compose_installed
