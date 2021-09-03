@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(*.ecobulk.upc.edu)
+domains=(granta.api.ecobulk.upc.edu sso.new.ecobulk.upc.edu sso.backend.new.ecobulk.upc.edu eushp-service.ecobulk.upc.edu)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="angel.fernandez.sobrino@upc.edu" # Adding a valid address is strongly recommended
