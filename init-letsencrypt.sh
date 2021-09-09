@@ -6,7 +6,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
 fi
 
 # put your multi domain here, separated by space. Don't forget make nginx multi domain conf
-domains=(granta.api.ecobulk.upc.edu eushp-service.ecobulk.upc.edu sso.new.ecobulk.upc.edu sso.backend.new.ecobulk.upc.edu)
+domains=(granta.api.ecobulk.upc.edu eushp.backend.ecobulk.upc.edu sso.ecobulk.upc.edu sso.backend.ecobulk.upc.edu)
 
 rsa_key_size=4096
 data_path="./data/certbot"
