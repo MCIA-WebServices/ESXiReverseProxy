@@ -27,8 +27,8 @@ jobs:
           username: mcia
           key: ${{ secrets.ESXIREVERSEPROXY_PRIVATE_KEY }}
           port: 22
-          source: "init-letsencrypt.sh, docker-compose.yaml, data/nginx/app.config"
-          target: "~/ReverseProxyESXi/"
+          source: "src/init.sh, src/delete.sh, config.sh, docker-compose.yaml, data/nginx/app.conf"
+          target: "~/ESXiReverseProxy/"
       - name: Reload service
         uses: appleboy/ssh-action@master
         with:
@@ -39,6 +39,6 @@ jobs:
           envs: TOKEN, USER, ACTOR, REPO
           # script uses jq to parse JSON, make sure jq is installed on target server
           script: |
-            cd ReverseProxyESXi
+            cd ESXiReverseProxy
             ./src/init.sh
             docker-compose up --build -d

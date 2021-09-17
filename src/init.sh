@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Return to project root
-cd ..
+echo "Current domain: "
+echo $PWD
 
 if ! [ -x "$(command -v docker-compose)" ];
 then
