@@ -50,7 +50,7 @@ do
 
   if [ -d "$path" ];
   then
-    echo " --- Existing certificate ... \e[1;32m done \e[1;0m"
+    echo -e " --- Existing certificate ... \e[1;32m done \e[1;0m"
     echo
   else
 
@@ -77,7 +77,7 @@ do
 
   if [ -d "$path" ];
   then
-    echo " --- Existing certificate ... \e[1;32m done \e[1;0m"
+    echo -e " --- Existing certificate ... \e[1;32m done \e[1;0m"
     echo
   else
 
@@ -97,7 +97,7 @@ do
 
   if [ -d "$path" ];
   then
-    echo " --- Existing certificate ... \e[1;32m done \e[1;0m"
+    echo -e " --- Existing certificate ... \e[1;32m done \e[1;0m"
     echo
   else
 
