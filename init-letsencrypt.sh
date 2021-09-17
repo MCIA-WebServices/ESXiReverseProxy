@@ -6,14 +6,7 @@ then
   exit 1
 fi
 
-# put your multi domain here, separated by space. Don't forget make nginx multi domain conf
-domains=(granta.api.ecobulk.upc.edu eushp.backend.ecobulk.upc.edu sso.ecobulk.upc.edu sso.backend.ecobulk.upc.edu)
-
-rsa_key_size=4096
-data_path="./data/certbot"
-
-email="angel.fernandez.sobrino@upc.edu" # Adding a valid address is strongly recommended, please add your own email !
-staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits, set 0 for production env.
+source config.sh
 
 echo "List of domains(s) :"
 

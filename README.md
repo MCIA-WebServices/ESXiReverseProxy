@@ -12,8 +12,6 @@ data/nginx/app.conf has to be modified with the required services
 
 ## TODOs
 
-Create configuration file for init-letsencrypt.sh
-
 Move to Traffik and implement automated deployment API
 
 
