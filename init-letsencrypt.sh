@@ -46,7 +46,7 @@ for domain in ${domains[@]};
 do
   echo "### Creating directory certificate for $domain ..."
 
-  path="/etc/letsencrypt/live/$domain"
+  path="$data_path/conf/live/$domain"
 
   if [ -d "$path" ];
   then
@@ -71,7 +71,7 @@ echo
 
 for domain in ${domains[@]};
 do
-  path="/etc/letsencrypt/live/$domain"
+  path="$data_path/conf/live/$domain"
 
   if [ -d "$path" ];
   then
@@ -89,7 +89,7 @@ done
 
 for domain in ${domains[@]};
 do
-  path="/etc/letsencrypt/live/$domain"
+  path="$data_path/conf/live/$domain"
 
   if [ -d "$path" ];
   then
