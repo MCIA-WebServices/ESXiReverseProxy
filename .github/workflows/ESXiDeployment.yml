@@ -40,5 +40,5 @@ jobs:
           # script uses jq to parse JSON, make sure jq is installed on target server
           script: |
             cd ReverseProxyESXi
-            ./init.sh
+            ./src/init.sh
             docker-compose up --build -d
