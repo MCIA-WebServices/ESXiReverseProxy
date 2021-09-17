@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Return to project root
+cd ..
+
 if ! [ -x "$(command -v docker-compose)" ];
 then
   echo 'Error: docker-compose is not installed.' >&2
