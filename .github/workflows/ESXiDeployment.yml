@@ -27,7 +27,7 @@ jobs:
           username: mcia
           key: ${{ secrets.ESXIREVERSEPROXY_PRIVATE_KEY }}
           port: 22
-          source: "src/init.sh, src/delete.sh, config.sh, docker-compose.yaml, data/nginx/app.conf"
+          source: "src/init.sh, src/delete.sh, config.sh, docker-compose.yaml, data/deployment_nginx/app.conf, data/deployment_nginx/app.conf"
           target: "~/ESXiReverseProxy/"
       - name: Reload service
         uses: appleboy/ssh-action@master
@@ -41,4 +41,4 @@ jobs:
           script: |
             cd ESXiReverseProxy
             ./src/init.sh
-            docker-compose up --build -d
+            docker-compose --profile production up -d

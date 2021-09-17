@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Return to project root
-echo "Current domain: "
-echo $PWD
-
 if ! [ -x "$(command -v docker-compose)" ];
 then
   echo 'Error: docker-compose is not installed.' >&2
@@ -23,13 +19,6 @@ echo
 echo "Your email : $email ..." 
 echo
 
-# if [ -d "$data_path" ]; then
-#   read -p "Your data maybe exist for this domain(s). Continue and replace existing certificate? (y/N) " decision
-#   if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
-#     exit
-#   fi
-# fi
-
 if [ ! -e "$data_path/conf/options-ssl-nginx.conf" ] || [ ! -e "$data_path/conf/ssl-dhparams.pem" ];
 then
   echo "### Downloading recommended TLS parameters ..."
@@ -39,53 +28,9 @@ then
   echo
 fi
 
-# for domain in ${domains[@]};
-# do
-#   echo "### Creating directory certificate for $domain ..."
-
-#   path="$data_path/conf/live/$domain"
-
-#   if [ -d "$path" ];
-#   then
-#     echo -e " --- Existing certificate ... \e[1;32m done \e[1;0m"
-#     echo
-#   else
-
-#     mkdir -p "$data_path/conf/live/$domain"
-
-#     echo "### Creating dummy certificate for $domain ..."
-#     docker-compose run --rm --entrypoint "\
-#       openssl req -x509 -nodes -newkey rsa:2048 -days 1\
-#         -keyout '$path/privkey.pem' \
-#         -out '$path/fullchain.pem' \
-#         -subj '/CN=localhost'" certbot
-#     echo
-#   fi
-# done
-
 echo "### Starting nginx container ..."
-docker-compose up --force-recreate -d nginx
+docker-compose up -d deployment
 echo
-
-# for domain in ${domains[@]};
-# do
-
-#   path="$data_path/conf/live/$domain"
-
-#   if [ -d "$path" ];
-#   then
-#     echo -e " --- Existing certificate ... \e[1;32m done \e[1;0m"
-#     echo
-#   else
-
-#     echo "### Deleting dummy certificate for $domain ..."
-#     docker-compose run --rm --entrypoint "\
-#       rm -Rf /etc/letsencrypt/live/$domain && \
-#       rm -Rf /etc/letsencrypt/archive/$domain && \
-#       rm -Rf /etc/letsencrypt/renewal/$domain.conf" certbot
-#     echo
-#   fi
-# done
 
 for domain in ${domains[@]};
 do
@@ -124,3 +69,5 @@ do
     echo
   fi
 done
+
+docker-compose down
