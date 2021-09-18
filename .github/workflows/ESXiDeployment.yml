@@ -20,16 +20,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Update files
+      - name: Create tar with deployment files
+        run: |
+          mkdir ${{ github.event.repository.name }}
+          cp -R src config.sh docker-compose.yaml data ${{ github.event.repository.name }}/
+          tar cvf ${{ github.event.repository.name }}.tar ./${{ github.event.repository.name }}/
+      - name: SCP files to server
         uses: appleboy/scp-action@master
         with:
           host: mciawebserver.upc.edu
           username: mcia
           key: ${{ secrets.ESXIREVERSEPROXY_PRIVATE_KEY }}
           port: 22
-          source: "src/init.sh, src/delete.sh, config.sh, docker-compose.yaml, data/deployment_nginx/app.conf, data/deployment_nginx/app.conf"
-          target: "~/ESXiReverseProxy/"
-      - name: Reload service
+          source: "${{ github.event.repository.name }}.tar"
+          target: "~/"
+      - name: Deploy in server
         uses: appleboy/ssh-action@master
         with:
           host: mciawebserver.upc.edu
@@ -39,6 +44,7 @@ jobs:
           envs: TOKEN, USER, ACTOR, REPO
           # script uses jq to parse JSON, make sure jq is installed on target server
           script: |
-            cd ESXiReverseProxy
+            tar -xvf ${{ github.event.repository.name }}.tar .
+            cd ${{ github.event.repository.name }}
             ./src/init.sh
             docker-compose --profile production up -d
