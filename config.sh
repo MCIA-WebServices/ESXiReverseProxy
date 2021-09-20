@@ -1,5 +1,11 @@
 # Domains, separated by space.
-domains=(granta.api.ecobulk.upc.edu eushp.backend.ecobulk.upc.edu sso.ecobulk.upc.edu sso.backend.ecobulk.upc.edu)
+domains=(
+    granta.api.ecobulk.upc.edu
+    eushp.backend.ecobulk.upc.edu
+    sso.ecobulk.upc.edu
+    sso.backend.ecobulk.upc.edu 
+    mps.ecobulk.upc.edu
+)
 
 # Email account
 email="angel.fernandez.sobrino@upc.edu"
