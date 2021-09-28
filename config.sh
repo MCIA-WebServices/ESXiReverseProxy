@@ -6,6 +6,8 @@ domains=(
     sso.backend.ecobulk.upc.edu 
     mps.ecobulk.upc.edu
     parallel.ecobulk.upc.edu
+    calendso.ecobulk.upc.edu
+    restya.ecobulk.upc.edu
 )
 
 # Email account
