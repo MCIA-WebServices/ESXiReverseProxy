@@ -39,7 +39,7 @@ do
 
   echo $path
 
-  if [ -d "$path" ];
+  if [ -f "$path" ];
   then
     echo -e " --- Existing certificate ... \e[1;32m done \e[1;0m"
     echo
