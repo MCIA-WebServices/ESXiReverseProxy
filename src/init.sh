@@ -35,7 +35,7 @@ echo
 for domain in ${domains[@]};
 do
 
-  path="$data_path/conf/live/$domain"
+  path="$data_path/conf/renewal/$domain.conf"
 
   echo $path
 
