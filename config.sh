@@ -1,5 +1,6 @@
 # Domains, separated by space.
 domains=(
+    mciawebserver.upc.edu
     granta.api.ecobulk.upc.edu
     eushp.backend.ecobulk.upc.edu
     sso.ecobulk.upc.edu
