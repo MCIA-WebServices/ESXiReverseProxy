@@ -1,4 +1,4 @@
-echo "### Deleting dummy certificate for $1 ..."
+echo "### Deleting certificate for $1 ..."
 docker-compose run --rm --entrypoint "\
     rm -Rf /etc/letsencrypt/live/$1 && \
     rm -Rf /etc/letsencrypt/archive/$1 && \
