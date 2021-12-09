@@ -1,50 +1,28 @@
-# This is a basic workflow to help you get started with Actions
+name: Production deployment
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   deploy:
     name: Deploy MASTER to production server
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create tar with deployment files
-        run: |
-          mkdir ${{ github.event.repository.name }}
-          cp -R src config.sh docker-compose.yaml data ${{ github.event.repository.name }}/
-          tar cvf ${{ github.event.repository.name }}.tar ./${{ github.event.repository.name }}/
-      - name: SCP files to server
-        uses: appleboy/scp-action@master
+      - uses: mcia-services/release-copy-deploy-action@latest
         with:
-          host: mciawebserver.upc.edu
+          host: docker
           username: mcia
-          key: ${{ secrets.ESXIREVERSEPROXY_PRIVATE_KEY }}
-          port: 22
-          source: "${{ github.event.repository.name }}.tar"
-          target: "~/"
-      - name: Deploy in server
-        uses: appleboy/ssh-action@master
-        with:
-          host: mciawebserver.upc.edu
-          username: mcia
-          key: ${{ secrets.ESXIREVERSEPROXY_PRIVATE_KEY }}
-          port: 22
-          envs: TOKEN, USER, ACTOR, REPO
-          # script uses jq to parse JSON, make sure jq is installed on target server
+          key: ${{ secrets.DOCKER_PRIVATE_KEY }}
+          proxy-host: 'mciawebserver.upc.edu'
+          proxy-username: 'mcia'
+          proxy-key: ${{ secrets.GATEWAY_PRIVATE_KEY }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          directory: /home/mcia
+          sources: config.sh docker-compose.yaml data/
+          tag: latest
           script: |
-            tar -xvf ${{ github.event.repository.name }}.tar .
-            cd ${{ github.event.repository.name }}
             ./src/init.sh
             docker-compose --profile production up -d
