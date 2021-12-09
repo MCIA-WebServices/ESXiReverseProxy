@@ -37,6 +37,8 @@ do
 
   path="$data_path/conf/live/$domain"
 
+  echo $path
+
   if [ -d "$path" ];
   then
     echo -e " --- Existing certificate ... \e[1;32m done \e[1;0m"
