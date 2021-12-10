@@ -20,6 +20,7 @@ echo "Your email : $email ..."
 echo
 
 echo "### Starting nginx container ..."
+docker-compose down
 docker-compose up -d deployment
 echo
 
