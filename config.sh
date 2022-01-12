@@ -15,7 +15,7 @@ domains=(
 email="angel.fernandez.sobrino@upc.edu"
 
 # Set to 1 if you're testing your setup to avoid hitting request limits, set 0 for production env.
-staging=1
+staging=0
 
 rsa_key_size=4096
 data_path="./data/certbot"
