@@ -7,7 +7,7 @@ then
 
     echo "### Deleting all certificates ..."
 
-    source config.sh
+    source ../config.sh
 
     for domain in ${domains[@]};
     do
